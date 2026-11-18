@@ -5,7 +5,7 @@ buildscript {
     }
     dependencies {
         // Forge 1.12.2 builds after the UserDev 3 transition require FG 3+.
-        classpath 'net.minecraftforge.gradle:ForgeGradle:3.0.200'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:3.0.196'
     }
 }
 
