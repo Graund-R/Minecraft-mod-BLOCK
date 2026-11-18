@@ -1,0 +1,12 @@
+[
+  {
+    "modid": "veilblock",
+    "name": "Veil Block",
+    "description": "Configurable optical masking blocks for Minecraft 1.12.2.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "authorList": ["Graund-T"],
+    "credits": "Forge 1.12.2",
+    "dependencies": []
+  }
+]
