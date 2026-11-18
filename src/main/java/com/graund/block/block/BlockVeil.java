@@ -18,7 +18,7 @@ public class BlockVeil extends BlockContainer {
         setHardness(1.0F);
         setResistance(3.0F);
         setLightOpacity(0);
-        setCreativeTab(net.minecraft.creativetab.CreativeTabs.REDSTONE);
+        setCreativeTab(com.graund.block.init.VeilCreativeTab.TAB);
     }
 
     @Override
