@@ -15,7 +15,7 @@ public class TileEntityVeil extends TileEntity {
 
     public TileEntityVeil() {
         for (EnumFacing face : EnumFacing.values()) {
-            faceModes.put(face, FaceMode.OPAQUE);
+            faceModes.put(face, FaceMode.GLASS);
         }
     }
 
