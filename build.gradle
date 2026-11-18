@@ -1,7 +1,8 @@
 buildscript {
     repositories {
-        maven { url = "https://maven.minecraftforge.net/" }
+        // Prefer Maven Central for shared libraries; use Forge Maven for ForgeGradle.
         mavenCentral()
+        maven { url = "https://maven.minecraftforge.net/" }
     }
     dependencies {
         // Forge 1.12.2 builds after the UserDev 3 transition require FG 3+.
