@@ -74,9 +74,9 @@ public final class MaskDepthPass {
                 if (mode == FaceMode.MASK || mode == FaceMode.OPAQUE) {
                     faces.add(new FaceDraw(pos, face));
                 } else if (mode == FaceMode.ONE_WAY) {
-                    double side = dx * face.getXOffset()
-                            + dy * face.getYOffset()
-                            + dz * face.getZOffset();
+                    double side = dx * face.getDirectionVec().getX()
+                            + dy * face.getDirectionVec().getY()
+                            + dz * face.getDirectionVec().getZ();
 
                     // ONE_WAY lets the observer see through from the face's
                     // outward side, but blocks the reverse direction.
