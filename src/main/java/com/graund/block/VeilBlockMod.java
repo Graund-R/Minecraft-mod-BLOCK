@@ -8,8 +8,12 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(modid = VeilBlockMod.MODID, name = VeilBlockMod.NAME, version = VeilBlockMod.VERSION,
-        acceptedMinecraftVersions = "[1.12.2"])
+@Mod(
+        modid = VeilBlockMod.MODID,
+        name = VeilBlockMod.NAME,
+        version = VeilBlockMod.VERSION,
+        acceptedMinecraftVersions = "[1.12.2]"
+)
 public class VeilBlockMod {
     public static final String MODID = "veilblock";
     public static final String NAME = "Veil Block";
