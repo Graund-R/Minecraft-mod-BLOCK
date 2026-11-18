@@ -1,0 +1,22 @@
+name: Forge 1.12.2 build
+
+on:
+  push:
+    branches: [forge-1.12.2-prototype]
+  pull_request:
+    branches: [forge-1.12.2-prototype]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
+      - uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '4.9'
+      - name: Set up Forge workspace and build
+        run: gradle setupDecompWorkspace build --no-daemon
