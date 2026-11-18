@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -29,13 +30,13 @@ public class CycleFaceMessage implements IMessage {
     public void fromBytes(ByteBuf buf) {
         pos = BlockPos.fromLong(buf.readLong());
         int side = buf.readUnsignedByte();
-        face = side < EnumFacing.values().length ? EnumFacing.values()[side] : EnumFacing.UP;
+        face = side < EnumFacing.values().length ? EnumFacing.values()[side] : null;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeLong(pos.toLong());
-        buf.writeByte(face.ordinal());
+        buf.writeByte(face == null ? 255 : face.ordinal());
     }
 
     public static class Handler implements IMessageHandler<CycleFaceMessage, IMessage> {
@@ -45,7 +46,19 @@ public class CycleFaceMessage implements IMessage {
             player.getServerWorld().addScheduledTask(new Runnable() {
                 @Override
                 public void run() {
-                    if (!player.isSneaking() || player.getDistanceSq(
+                    if (message.face == null || !player.isSneaking()) {
+                        return;
+                    }
+
+                    // The server independently verifies the exact block face being targeted.
+                    RayTraceResult hit = player.rayTrace(6.0D, 1.0F);
+                    if (hit == null || hit.typeOfHit != RayTraceResult.Type.BLOCK
+                            || !message.pos.equals(hit.getBlockPos())
+                            || message.face != hit.sideHit) {
+                        return;
+                    }
+
+                    if (player.getDistanceSq(
                             message.pos.getX() + 0.5D,
                             message.pos.getY() + 0.5D,
                             message.pos.getZ() + 0.5D) > 64.0D) {
