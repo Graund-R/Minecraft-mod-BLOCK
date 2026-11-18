@@ -17,6 +17,6 @@ jobs:
           java-version: '8'
       - uses: gradle/actions/setup-gradle@v3
         with:
-          gradle-version: '4.9'
+          gradle-version: '5.6.4'
       - name: Set up Forge workspace and build
-        run: gradle setupDecompWorkspace build --no-daemon
+        run: gradle build --no-daemon
